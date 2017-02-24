@@ -1,0 +1,15 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+
+<div class="form-holder">
+    <form action="/client/update/@Model.GetId()" method="post">
+        <input type="hidden" name="_method" value="PATCH">
+        <label>New Name:</label>
+        <input type="text" name="update" placeholder="Batman">
+        <br>
+        <button class="btn waves-effect waves-light" type="submit">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+</div>

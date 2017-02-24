@@ -2,11 +2,4 @@
   Layout = "Shared/_Layout.cshtml";
 }
 
-@if(Model == "stylist")
-{
-    <h1> Successfully added a new stylist </h1>
-}
-else if(Model == "client")
-{
-    <h1> Successfully added a new client </h1>
-}
+<h1>You have added a new @Model successfully</h1>

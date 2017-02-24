@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using Nancy;
-using Nancy.ViewEngines.Razor;
+using System.Collections.Generic;
 using HairSalonApp.Objects;
-using System.Linq;
 
 namespace HairSalonApp
 {
@@ -27,17 +25,50 @@ namespace HairSalonApp
                 return View["success.cshtml", "stylist"];
             };
 
-            Get["/add-client/{id}"] = parameter =>
+            Get["/new-client/{id}"] = parameter =>
             {
                 int stylistId = parameter.id;
                 return View["add-client-form.cshtml", stylistId];
             };
 
-            Post["/new-client"] =_=>
+            Post["/add-client"] = _ =>
             {
-                Client newClient = new Client(Request.Form["name"], Request.Form["id"]);
+                Client newClient = new Client(Request.Form["name"], Request.Form["stylistId"]);
                 newClient.Save();
                 return View["success.cshtml", "client"];
+            };
+
+            Get["/unique-client/{id}"] = parameter =>
+            {
+                Client tempClient = Client.Find(parameter.id);
+                return View["client.cshtml", tempClient];
+            };
+
+            Get["/delete-confirm/{id}"] = parameter =>
+            {
+                return View["confirm-delete.cshtml", Client.Find(parameter.id)];
+            };
+
+            Delete["/delete-client/{id}"] = parameter =>
+            {
+                Client tempClient = Client.Find(parameter.id);
+                // Console.WriteLine(tempClient.GetId());
+                tempClient.Delete();
+                return View["index.cshtml", Stylist.GetAll()];
+            };
+
+            Get["/modify-client/{id}"] = parameter =>
+            {
+                Client tempClient = Client.Find(parameter.id);
+                return View["modify-form.cshtml", tempClient];
+            };
+
+            Patch["/client/update/{id}"] = parameter =>
+            {
+                Client tempClient = Client.Find(parameter.id);
+                tempClient.Update(Request.Form["update"]);
+                Client outputClient = Client.Find(parameter.id);
+                return View["client.cshtml", outputClient];
             };
         }
     }

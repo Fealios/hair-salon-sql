@@ -115,6 +115,8 @@ namespace HairSalonApp.Objects
           {
             conn.Close();
           }
+
+          Console.WriteLine("successfully saved client");
         } // end save
 
         public static Client Find(int id)

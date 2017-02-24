@@ -1,0 +1,9 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+
+@Model.GetName()
+
+<br>
+<a href="/delete-confirm/@Model.GetId()" class="waves-effect waves-light btn">Delete</a> |
+<a href="/modify-client/@Model.GetId()" class="waves-effect waves-light btn">Modify</a>

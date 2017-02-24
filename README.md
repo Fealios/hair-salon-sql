@@ -21,3 +21,5 @@
     - delete client 1
     - query database for client 1
     - client 1 not found
+
+* The main page has employee drop downs that let you view their client list, with the option of adding additional clients

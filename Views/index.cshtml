@@ -8,15 +8,16 @@
         @foreach(var stylist in Model){
             <ul class="collapsible" data-collapsible="accordion">
                 <li>
-                    <div class="collapsible-header"><i class="material-icons">perm_identity</i>@stylist.GetName()</div>
+                    <div class="collapsible-header"><i class="material-icons">perm_identity</i>@stylist.GetName() | @stylist.GetPhone()</div>
                     <div class="collapsible-body">
                         <ul>
                             @foreach(var client in stylist.GetClientList())
                             {
-                                <li>@client.GetName()</li>
+                                <li class="client-holder"><a href="unique-client/@client.GetId()">@client.GetName()</a></li>
                             }
                         </ul>
-                        <a href="/add-client/@stylist.GetId()" class="waves-effect waves-light btn">Add Client</a>
+                        <!-- @stylist.GetId() -->
+                        <a href="/new-client/@stylist.GetId()" class="waves-effect waves-light btn">Add Client</a>
                     </div>
                 </li>
             </ul>
