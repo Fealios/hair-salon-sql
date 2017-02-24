@@ -48,6 +48,83 @@ namespace HairSalonApp.Objects
           }
         }
 
-        
+        public static List<Stylist> GetAll()
+        {
+            List<Stylist> allStylists = new List<Stylist>{};
+
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM stylists;", conn);
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                int stylistId = rdr.GetInt32(0);
+                string stylistName = rdr.GetString(1);
+                string stylistPhone = rdr.GetString(2);
+
+                Stylist retrievedStylist = new Stylist(stylistName, stylistPhone, stylistId);
+                allStylists.Add(retrievedStylist);
+            }
+            if(rdr != null)
+            {
+              rdr.Close();
+            }
+            if(conn != null)
+            {
+              conn.Close();
+            }
+
+            return allStylists;
+        }
+
+        public static void DeleteAll()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("DELETE FROM stylists;", conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void Save()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("INSERT INTO stylists(name, number) OUTPUT INSERTED.id VALUES (@StylistName, @StylistNumber);", conn);
+
+            SqlParameter nameParameter = new SqlParameter("@StylistName", this.GetName());
+            SqlParameter phoneParameter = new SqlParameter("@StylistNumber", this.GetPhone());
+
+            cmd.Parameters.Add(nameParameter);
+            cmd.Parameters.Add(phoneParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+              this._id = rdr.GetInt32(0);
+            }
+            if (rdr != null)
+            {
+              rdr.Close();
+            }
+            if(conn != null)
+            {
+              conn.Close();
+            }
+        }
+
+
+
+
+
+
+
+
+
     } //end class
 }

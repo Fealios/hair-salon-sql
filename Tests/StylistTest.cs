@@ -30,9 +30,22 @@ namespace HairSalonApp
             Assert.Equal("phone#", newStylist.GetPhone());
         }
 
+        [Fact]
+        public void Save_SavesEnteredStylist_true()
+        {
+            Stylist newStylist = new Stylist("Melvin", "phone#");
+
+            List<Stylist> backendList = new List<Stylist>{newStylist};
+            newStylist.Save();
+            List<Stylist> sqlList = Stylist.GetAll();
+
+
+            Assert.Equal(backendList, sqlList);
+        }
+
         public void Dispose()
         {
-            //
+            Stylist.DeleteAll();
         }
     }
 }
