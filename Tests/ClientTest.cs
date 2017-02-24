@@ -31,7 +31,7 @@ namespace HairSalonApp
         }
 
         [Fact]
-        public void Save_SavesEnteredStylist_true()
+        public void Save_SavesEnteredClient_true()
         {
             Client newClient = new Client("Melvin", 1);
 
@@ -41,6 +41,19 @@ namespace HairSalonApp
 
 
             Assert.Equal(backendList, sqlList);
+        }
+
+        [Fact]
+        public void Find_ReturnClientById_true()
+        {
+            Client newClient = new Client("Melvin", 1);
+            newClient.Save();
+
+            int id = newClient.GetId();
+
+            Client foundClient = Client.Find(id);
+
+            Assert.Equal(newClient, foundClient);
         }
 
 //end tests --------------------------------------------
