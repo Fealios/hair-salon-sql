@@ -12,3 +12,7 @@
     - Page reference /specific_stylist
     - output: Stylist Info
     - (this is demonstrated in tests by using the Find method)
+
+* Employees can add new client info and view that info
+    - input "Dude", 1
+    - output "Dude", 1
