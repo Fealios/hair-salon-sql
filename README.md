@@ -1,4 +1,14 @@
-# Specs:
+# Title:  Hair Salon
+
+## Author/Copywrite: Melvin Gruschow February, 24 2017
+
+### Description:
+This application is meant to grant a Hair Salon organization with the ability to keep track of its Stylists and what Customers they have, and which Stylists take care of which Customers
+
+### Instructions:
+You need to download this Git repository, and run the dnu command and dnx kestrel command in the root directory of this app.  Then restore the Database used by finding the hair_salon.sql file, and doubel clicking it.  This should restore the Database to your local SQL Server.  Next you just need to open the app in your web browser to continue.  
+
+### Specs:
 
 * Employee enters new Stylist info, and can view that info
     - input "Melvin", "206-437-4055"

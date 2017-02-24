@@ -70,6 +70,11 @@ namespace HairSalonApp
                 Client outputClient = Client.Find(parameter.id);
                 return View["client.cshtml", outputClient];
             };
+
+            Get["/all-clients"] =_=>
+            {
+                return View["all-clients.cshtml", Client.GetAll()];
+            };
         }
     }
 }
