@@ -1,0 +1,19 @@
+nav {
+    background-color: #4DB6AC;
+    padding-right: 200px;
+    padding-left: 150px;
+}
+
+.button-holder{
+    margin-top: 100px;
+    /*border: solid;*/
+}
+
+.form-holder{
+    width: 50%;
+    margin-left: 25%;
+}
+
+.brand-logo{
+    color: #039BE5;
+}
