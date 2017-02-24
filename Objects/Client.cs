@@ -150,8 +150,58 @@ namespace HairSalonApp.Objects
           }
 
           return foundClient;
+        }
+
+        public void Delete()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id= @Client_Id;",conn);
+
+            SqlParameter clientId = new SqlParameter("@Client_Id", this.GetId());
+            cmd.Parameters.Add(clientId);
+
+            cmd.ExecuteNonQuery();
+
+            if (conn != null)
+            {
+                conn.Close();
+            }
 
         }
+
+        public void Update(string newName)
+         {
+           SqlConnection conn = DB.Connection();
+           conn.Open();
+
+           SqlCommand cmd = new SqlCommand("UPDATE clients SET name = @NewName OUTPUT INSERTED.name WHERE id = @ClientId;", conn);
+
+           SqlParameter newNameParameter = new SqlParameter("@NewName", newName);
+           cmd.Parameters.Add(newNameParameter);
+
+
+           SqlParameter clientIdParameter = new SqlParameter();
+           clientIdParameter.ParameterName = "@ClientId";
+           clientIdParameter.Value = this.GetId();
+           cmd.Parameters.Add(clientIdParameter);
+           SqlDataReader rdr = cmd.ExecuteReader();
+
+           while(rdr.Read())
+           {
+             this._name = rdr.GetString(0);
+           }
+
+           if (rdr != null)
+           {
+             rdr.Close();
+           }
+
+           if (conn != null)
+           {
+             conn.Close();
+           }
+         }
 
     }
 }

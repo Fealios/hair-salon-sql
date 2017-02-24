@@ -56,6 +56,30 @@ namespace HairSalonApp
             Assert.Equal(newClient, foundClient);
         }
 
+        [Fact]
+        public void Delete_DeleteClientByIdFromSql_true()
+        {
+            Client newClient = new Client("Melvin", 1);
+
+            List<Client> beforeDelete = Client.GetAll();
+            newClient.Save();
+            newClient.Delete();
+            List<Client> afterDelete = Client.GetAll();
+
+            Assert.Equal(beforeDelete, afterDelete);
+        }
+
+        [Fact]
+        public void Update_ChangeClientNameToNewInput_true()
+        {
+            Client newClient = new Client("Melvin", 1);
+            newClient.Save();
+
+            newClient.Update("John");
+
+            Assert.Equal("John", newClient.GetName());
+        }
+
 //end tests --------------------------------------------
         public void Dispose()
         {

@@ -16,3 +16,8 @@
 * Employees can add new client info and view that info
     - input "Dude", 1
     - output "Dude", 1
+
+* Employees can remove clients from database
+    - delete client 1
+    - query database for client 1
+    - client 1 not found
