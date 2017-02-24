@@ -11,3 +11,4 @@
 * Employees can go to specific pages of Stylists and see their database
     - Page reference /specific_stylist
     - output: Stylist Info
+    - (this is demonstrated in tests by using the Find method)

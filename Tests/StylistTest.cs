@@ -43,6 +43,20 @@ namespace HairSalonApp
             Assert.Equal(backendList, sqlList);
         }
 
+        [Fact]
+        public void Find_ReturnStylistById_true()
+        {
+            Stylist newStylist = new Stylist("Melvin", "phone#");
+            newStylist.Save();
+
+            int id = newStylist.GetId();
+
+            Stylist foundStylist = Stylist.Find(id);
+
+            Assert.Equal(newStylist, foundStylist);
+        }
+
+//end tests --------------------------------------------
         public void Dispose()
         {
             Stylist.DeleteAll();
